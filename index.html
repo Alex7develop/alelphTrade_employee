@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визитка сотрудника</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  
+    <div class="card">
+        <button class="download"><img src="/img/download.png" alt="Скачать"></button>
+        <div class="content">
+            <div class="profile">
+                <header class="logoti">
+                    <img src="/icons/Vector.svg" alt="Логотип" class="logo">
+                    <h1>Алефтрейд</h1>
+                </header>
+                <img src="/img/personalPhoto.png" alt="Максим Вишняков" class="profile-photo">
+                <div class="buttons">
+                    <button onclick="call()">Позвонить</button>
+                    <button onclick="addContact()">Добавить в контакты</button>
+                </div>
+            </div>
+            <div class="info">
+                <h2>Максим Вишняков</h2>
+                <p class="position">менеджер</p>
+                <ul>
+                    <li><img src="/icons/iphone.png" alt="Телефон"> <a href="tel:+79199973008">+7(919)-997-30-08</a></li>
+                    <li><img src="/icons/phone.png" alt="Офис"> <a href="tel:+79199973008">+7(919)-997-30-08 (офис)</a></li>
+                    <li><img src="/icons/mail.png" alt="Email"> <a href="mailto:mvishnyakov@alephtrade.com">mvishnyakov@alephtrade.com</a></li>
+                    <li><img src="/icons/telegram.png" alt="Telegram"> <a href="https://t.me/+79199973008">+7(919)-997-30-08</a></li>
+                    <li><img src="/icons/chat.png" alt="WhatsApp"> <a href="https://wa.me/79199973008">+7(919)-997-30-08</a></li>
+                    <li><img src="/icons/point.png" alt="Адрес"> <a href="https://maps.google.com/?q=Москва,Хорошевское+ш-се,32А,2+подъезд,3+этаж,офис+301" target="_blank">Москва, Хорошевское ш-се, 32А, 2 подъезд, 3 этаж, офис 301</a></li>
+                </ul>
+                <div class="buttons_map">
+                    <button onclick="showMap()">Показать на карте</button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="partners">
+                <img src="/img/companyAll.png" alt="AT">
+
+            </div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
