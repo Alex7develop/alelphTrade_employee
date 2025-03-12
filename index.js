@@ -48,15 +48,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('img.profile-photo').setAttribute('src', photo);
   }
   document.getElementById('Contact').addEventListener('click', function () {
+    const params = new URLSearchParams(window.location.search);
+
+    let name = params.get('name') || "Имя";
+    let last_name = params.get('last_name') || "Фамилия";
+    let phone = params.get('phone') || "+70000000000";
+    let email = params.get('email') || "example@email.com";
+    let photo = params.get('photo') || "";
+
     const vCardData = `
 BEGIN:VCARD
 VERSION:3.0
 FN:${name} ${last_name}
-TEL:${phone}
-EMAIL:${email}
-PHOTO:${photo || ''}
+N:${last_name};${name};;;
+TEL;TYPE=CELL:${phone}
+EMAIL;TYPE=INTERNET:${email}
+PHOTO;TYPE=JPEG:${photo}
 END:VCARD
-        `.trim();
+    `.trim();
 
     const blob = new Blob([vCardData], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
@@ -64,9 +73,16 @@ END:VCARD
     const a = document.createElement('a');
     a.href = url;
     a.download = `${name}_${last_name}.vcf`;
+
+    // Автооткрытие файла на Android
+    if (/android/i.test(navigator.userAgent)) {
+        a.target = "_blank";
+    }
+
     a.click();
     URL.revokeObjectURL(url);
-  });
+});
+
 });
 
 function showMap() {
