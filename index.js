@@ -2,19 +2,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
 
   // Извлекаем параметры из URL
-  const name = params.get("name");
-  const second_name = params.get("second_name");
-  const last_name = params.get("last_name");
-  const phone = params.get("phone");
-  const email = params.get("email");
-  const photo = params.get("photo");
-
+  let name = params.get("name");
+  let second_name = params.get("second_name");
+  let last_name = params.get("last_name");
+  let phone = params.get("phone");
+  let email = params.get("email");
+  let photo = params.get("photo");
+  if (phone) {
+      phone = phone.replace(/[^+\d]/g, ''); // Оставляем только + и цифры
+  }
   // Вставляем значения в соответствующие поля
   document.querySelector("h2").textContent = `${name} ${last_name}`;
   document.querySelector(".position").textContent = "менеджер"; // Можно заменить на другой параметр, если нужно
   document.querySelectorAll("a[href^='tel:']").forEach(link => {
-      link.textContent = phone;
       link.href = `tel:${phone}`;
+      if(link.id === "mainPhone" || link.id == "officePhone")
+      {
+          link.textContent = phone;
+      }
   });
   document.querySelectorAll("img[alt='Телефон']").forEach(img => {
       img.alt = phone;
@@ -32,9 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   document.querySelectorAll("a[href^='https://t.me/']").forEach(link => {
       link.textContent = phone;
+      link.href = `https://t.me/${phone}`;
   });
   document.querySelectorAll("a[href^='https://wa.me/']").forEach(link => {
       link.textContent = phone;
+      link.href = `https://wa.me/${phone}`;
   });
 
   // Если есть возможность загрузить фотографию профиля
