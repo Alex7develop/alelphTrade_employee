@@ -107,7 +107,11 @@ body {
   margin-top: 10px;
 }
 
-.buttons button {
+.buttons button,
+.buttons a {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
   width: 194px;
   height: 85px;
   background: #ffe600;
@@ -117,7 +121,9 @@ body {
   color: #2c2c2c;
   font-weight: 500;
   font-size: 20px;
-  margin-top: -60px;
+  text-decoration: none; 
+  font-family: inherit; 
+  line-height: normal; 
 }
 
 @media (max-width: 768px) {
@@ -128,7 +134,8 @@ body {
     gap: 8px;
   }
   
-  .buttons button {
+  .buttons button,
+  .buttons a{
     width: 170px;
     height: 70px;
     font-size: 14px;
@@ -142,9 +149,11 @@ body {
     justify-content: space-between;
     padding: 0;
     gap: 8px;
+    width: 290px;
   }
   
-  .buttons button {
+  .buttons button
+  .buttons a {
     width: 150px;
     height: 70px;
     font-size: 14px;
