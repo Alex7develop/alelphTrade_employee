@@ -42,3 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("img.profile-photo").setAttribute("src", photo);
   }
 });
+
+function showMap() {
+  // Переход по указанной ссылке
+  window.location.href = "https://yandex.ru/maps/213/moscow/house/khoroshyovskoye_shosse_32a/Z04YcwNiS0EHQFtvfXt2dHVmYQ==/?ll=37.542473%2C55.775910&z=19.09";
+}
