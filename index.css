@@ -136,6 +136,22 @@ body {
     font-weight: 500;
   }
 }
+@media (max-width: 375px) {
+  .buttons {
+    margin-top: 0;
+    justify-content: space-between;
+    padding: 0;
+    gap: 8px;
+  }
+  
+  .buttons button {
+    width: 150px;
+    height: 70px;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+}
 
 .info {
   display: flex;
@@ -430,6 +446,11 @@ h1 {
     width: 100%; 
     left: 40%; 
     transform: translateX(-40%); 
+  }
+}
+@media (max-width: 375px) {
+  .info h2 {
+    font-size: 24px;
   }
 }
 
