@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
   const params = new URLSearchParams(window.location.search);
 
-  // Извлекаем параметры из URL
-  let name = params.get('name');
-  let second_name = params.get('second_name');
-  let last_name = params.get('last_name');
-  let phone = params.get('phone');
-  let email = params.get('email');
-  let photo = params.get('photo');
-  if (phone) {
-    phone = phone.replace(/[^+\d]/g, ''); // Оставляем только + и цифры
-  }
+  // Фиксированные данные для тестирования
+  let name = "Иван";
+  let last_name = "Иванов";
+  let phone = "+79123456789";
+  let email = "ivan.ivanov@example.com";
+  let photo = "https://via.placeholder.com/150"; // Заглушка для фото
+
   // Вставляем значения в соответствующие поля
   document.querySelector('h2').textContent = `${name} ${last_name}`;
-  document.querySelector('.position').textContent = 'менеджер'; // Можно заменить на другой параметр, если нужно
+  document.querySelector('.position').textContent = 'менеджер';
   document.querySelectorAll("a[href^='tel:']").forEach((link) => {
     link.href = `tel:${phone}`;
     if (link.id === 'mainPhone' || link.id == 'officePhone') {
@@ -31,30 +28,30 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll("img[alt='Telegram']").forEach((img) => {
     img.alt = phone;
   });
-  document.querySelectorAll("img[alt='WhatsApp']").forEach((img, a) => {
+  document.querySelectorAll("img[alt='WhatsApp']").forEach((img) => {
     img.alt = phone;
   });
   document.querySelectorAll("a[href^='https://t.me/']").forEach((link) => {
     link.textContent = phone;
-    link.href = `https://t.me/${phone}`;
+    link.href = `https://t.me/${phone.replace('+', '')}`;
   });
   document.querySelectorAll("a[href^='https://wa.me/']").forEach((link) => {
     link.textContent = phone;
-    link.href = `https://wa.me/${phone}`;
+    link.href = `https://wa.me/${phone.replace('+', '')}`;
   });
 
   // Если есть возможность загрузить фотографию профиля
   if (photo) {
     document.querySelector('img.profile-photo').setAttribute('src', photo);
   }
-  document.getElementById('Contact').addEventListener('click', function () {
-    const params = new URLSearchParams(window.location.search);
 
-    let name = params.get('name') || "Имя";
-    let last_name = params.get('last_name') || "Фамилия";
-    let phone = params.get('phone') || "+70000000000";
-    let email = params.get('email') || "example@email.com";
-    let photo = params.get('photo') || "";
+  document.getElementById('Contact').addEventListener('click', function () {
+    // Фиксированные данные для тестирования
+    let name = "Иван";
+    let last_name = "Иванов";
+    let phone = "+79123456789";
+    let email = "ivan.ivanov@example.com";
+    let photo = "https://via.placeholder.com/150"; // Заглушка для фото
 
     const vCardData = `
 BEGIN:VCARD
@@ -78,16 +75,15 @@ END:VCARD
     const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
     if (isIOS) {
-        // Для iOS открываем vCard в новой вкладке
-        window.open(vCardUrl, '_blank');
+      // Для iOS открываем vCard в новой вкладке
+      window.open(vCardUrl, '_blank');
     } else {
-        // Для Android и других устройств скачиваем vCard
-        a.click();
+      // Для Android и других устройств скачиваем vCard
+      a.click();
     }
 
     URL.revokeObjectURL(vCardUrl);
   });
-
 });
 
 function showMap() {
