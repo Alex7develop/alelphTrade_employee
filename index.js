@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let photo = params.get('photo') || "";
 
     const vCardData = `
-    BEGIN:VCARD
-    VERSION:3.0
-    FN:${name} ${last_name}
-    N:${last_name};${name};;;
-    TEL;TYPE=CELL:${phone}
-    EMAIL;TYPE=INTERNET:${email}
-    PHOTO;TYPE=JPEG:${photo}
-    END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:${name} ${last_name}
+N:${last_name};${name};;;
+TEL;TYPE=CELL:${phone}
+EMAIL;TYPE=INTERNET:${email}
+PHOTO;TYPE=JPEG:${photo}
+END:VCARD
     `.trim();
 
     const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
