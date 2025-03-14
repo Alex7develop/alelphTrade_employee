@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="card">
-        <!-- <button class="download"><img src="/img/download.png" alt="Скачать"></button> -->
+        <button class="download"><img src="/img/download.png" alt="Скачать"></button>
         <div class="content">
             <div class="profile">
                 <header class="logoti">
@@ -50,4 +50,74 @@
     </div>
     <script src="index.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Скачать контакт</title>
+
+    <style>
+
+        body {
+
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+            background-color: #f2f2f7;
+
+        }
+
+        .download-button {
+
+            background-color: #007aff;
+
+            color: white;
+
+            padding: 15px 30px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AИванов%3BИван%3B%3B%3B%0AFN%3AИван%20Иванов%0AORG%3AМоя%20Компания%0ATITLE%3AМенеджер%0ATEL%3BCELL%3A%2B79001234567%0AEMAIL%3Aivan%40example.com%0AEND%3AVCARD"
+
+       download="contact.vcf"
+
+       class="download-button">
+
+        Скачать контакт
+
+    </a>
+
+</body>
+
 </html>
