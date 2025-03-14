@@ -67,11 +67,11 @@ PHOTO;TYPE=JPEG:${photo}
 END:VCARD
     `.trim();
 
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-    const url = URL.createObjectURL(blob);
+    const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
+    const vCardUrl = URL.createObjectURL(vCardBlob);
 
     const a = document.createElement('a');
-    a.href = url;
+    a.href = vCardUrl;
     a.download = `${name}_${last_name}.vcf`;
 
     // Автооткрытие файла на Android
@@ -79,9 +79,15 @@ END:VCARD
         a.target = "_blank";
     }
 
-    a.click();
-    URL.revokeObjectURL(url);
-});
+    // Для iOS используем window.open
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+        window.open(vCardUrl, '_blank');
+    } else {
+        a.click();
+    }
+
+    URL.revokeObjectURL(vCardUrl);
+  });
 
 });
 
