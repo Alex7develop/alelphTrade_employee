@@ -50,44 +50,43 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('Contact').addEventListener('click', function () {
     const params = new URLSearchParams(window.location.search);
 
-    // let name = params.get('name') || "Имя";
-    // let last_name = params.get('last_name') || "Фамилия";
-    // let phone = params.get('phone') || "+70000000000";
-    // let email = params.get('email') || "example@email.com";
-    // let photo = params.get('photo') || "";
+    let name = params.get('name') || "Имя";
+    let last_name = params.get('last_name') || "Фамилия";
+    let phone = params.get('phone') || "+70000000000";
+    let email = params.get('email') || "example@email.com";
+    let photo = params.get('photo') || "";
 
-    // const vCardData = `
-    // BEGIN:VCARD
-    // VERSION:3.0
-    // FN:${name} ${last_name}
-    // N:${last_name};${name};;;
-    // TEL;TYPE=CELL:${phone}
-    // EMAIL;TYPE=INTERNET:${email}
-    // PHOTO;TYPE=JPEG:${photo}
-    // END:VCARD
-    // `.trim();
+    const vCardData = `
+    BEGIN:VCARD
+    VERSION:3.0
+    FN:${name} ${last_name}
+    N:${last_name};${name};;;
+    TEL;TYPE=CELL:${phone}
+    EMAIL;TYPE=INTERNET:${email}
+    PHOTO;TYPE=JPEG:${photo}
+    END:VCARD
+    `.trim();
 
-    // const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
-    // const vCardUrl = URL.createObjectURL(vCardBlob);
+    const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
+    const vCardUrl = URL.createObjectURL(vCardBlob);
 
     const a = document.createElement('a');
-    // a.href = vCardUrl;
-    a.href ="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AИванов%3BИван%3B%3B%3B%0AFN%3AИван%20Иванов%0AORG%3AМоя%20Компания%0ATITLE%3AМенеджер%0ATEL%3BCELL%3A%2B79001234567%0AEMAIL%3Aivan%40example.com%0AEND%3AVCARD";
-    // a.download = `${name}_${last_name}.vcf`;
+    a.href = vCardUrl;
+    a.download = `${name}_${last_name}.vcf`;
 
     // Автооткрытие файла на Android
-    // if (/android/i.test(navigator.userAgent)) {
-    //     a.target = "_blank";
-    // }
+    if (/android/i.test(navigator.userAgent)) {
+        a.target = "_blank";
+    }
 
     // Для iOS используем window.open
-    // if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
-    //     window.open(vCardUrl, '_blank');
-    // } else {
-    //     a.click();
-    // }
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+        window.open(vCardUrl, '_blank');
+    } else {
+        a.click();
+    }
 
-    // URL.revokeObjectURL(vCardUrl);
+    URL.revokeObjectURL(vCardUrl);
   });
 
 });
