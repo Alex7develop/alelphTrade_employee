@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const vCardData = `
     BEGIN:VCARD
+    VERSION:3.0
     FN:${name} ${last_name}
     N:${last_name};${name};;;
     TEL;TYPE=CELL:${phone}
