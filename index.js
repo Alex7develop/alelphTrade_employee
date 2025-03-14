@@ -74,15 +74,14 @@ END:VCARD
     a.href = vCardUrl;
     a.download = `${name}_${last_name}.vcf`;
 
-    // Автооткрытие файла на Android
-    if (/android/i.test(navigator.userAgent)) {
-        a.target = "_blank";
-    }
+    // Проверяем, является ли устройство iOS
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-    // Для iOS используем window.open
-    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+    if (isIOS) {
+        // Для iOS открываем vCard в новой вкладке
         window.open(vCardUrl, '_blank');
     } else {
+        // Для Android и других устройств скачиваем vCard
         a.click();
     }
 
