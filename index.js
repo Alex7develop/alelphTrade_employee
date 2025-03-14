@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (photo) {
     document.querySelector('img.profile-photo').setAttribute('src', photo);
   }
+
   document.getElementById('Contact').addEventListener('click', function () {
     const params = new URLSearchParams(window.location.search);
 
@@ -70,24 +71,22 @@ END:VCARD
     const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
     const vCardUrl = URL.createObjectURL(vCardBlob);
 
-    const a = document.createElement('a');
-    a.href = vCardUrl;
-    a.download = `${name}_${last_name}.vcf`;
-
     // Проверяем, является ли устройство iOS
     const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
     if (isIOS) {
-        // Для iOS открываем vCard в новой вкладке
-        window.open(vCardUrl, '_blank');
+      // Для iOS открываем vCard в том же окне
+      window.location.href = vCardUrl;
     } else {
-        // Для Android и других устройств скачиваем vCard
-        a.click();
+      // Для Android и других устройств скачиваем vCard
+      const a = document.createElement('a');
+      a.href = vCardUrl;
+      a.download = `${name}_${last_name}.vcf`;
+      a.click();
     }
 
     URL.revokeObjectURL(vCardUrl);
   });
-
 });
 
 function showMap() {
