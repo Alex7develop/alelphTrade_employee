@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const vCardUrl = URL.createObjectURL(vCardBlob);
 
     const a = document.createElement('a');
-    a.href = vCardUrl;
+    // a.href = vCardUrl;
+    a.href ="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AИванов%3BИван%3B%3B%3B%0AFN%3AИван%20Иванов%0AORG%3AМоя%20Компания%0ATITLE%3AМенеджер%0ATEL%3BCELL%3A%2B79001234567%0AEMAIL%3Aivan%40example.com%0AEND%3AVCARD";
     a.download = `${name}_${last_name}.vcf`;
 
     // Автооткрытие файла на Android
