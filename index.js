@@ -105,13 +105,14 @@ document.addEventListener('DOMContentLoaded', function () {
   let phone = params.get('phone');
   let email = params.get('email');
   let photo = params.get('photo');
+  let position = params.get('position')
   if (phone) {
     phone = phone.replace(/[^+\d]/g, ''); // Оставляем только + и цифры
   }
 
   // Вставляем значения в соответствующие поля
   document.querySelector('h2').textContent = `${name} ${last_name}`;
-  document.querySelector('.position').textContent = 'менеджер'; // Можно заменить на другой параметр, если нужно
+  document.querySelector('.position').textContent = `${position}`||'менеджер'; // Можно заменить на другой параметр, если нужно
   document.querySelectorAll("a[href^='tel:']").forEach((link) => {
     link.href = `tel:${phone}`;
     if (link.id === 'mainPhone' || link.id == 'officePhone') {
@@ -159,20 +160,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Формируем vCard
     const vCardData = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${name} ${last_name}
-N:${last_name};${name};;;
-TEL;TYPE=CELL:${phone}
-EMAIL;TYPE=INTERNET:${email}
-PHOTO;TYPE=JPEG:${photo}
-END:VCARD
+    BEGIN:VCARD
+    VERSION:3.0
+    FN:${name} ${last_name}
+    N:${last_name};${name};;;
+    TEL;TYPE=CELL:${phone}
+    EMAIL;TYPE=INTERNET:${email}
+    PHOTO;TYPE=JPEG:${photo}
+    END:VCARD
     `.trim();
 
-    // Кодируем vCard для использования в data: URL
+    // Кодируем vCard для использования в data: URL, то что прислал Андрей 
     const encodedVCard = encodeURIComponent(vCardData);
 
-    // Создаем ссылку с data: URL
+    // Создаем ссылку с data: URL по примеру Андрея 
     const downloadLink = document.createElement('a');
     downloadLink.href = `data:text/vcard;charset=utf-8,${encodedVCard}`;
     downloadLink.download = `${name}_${last_name}.vcf`;
