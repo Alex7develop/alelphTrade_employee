@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let phone = params.get('phone');
   let email = params.get('email');
   let photo = params.get('photo');
-  let position = params.get('position')
+  let position = params.get('work_position')
   if (phone) {
     phone = phone.replace(/[^+\d]/g, ''); // Оставляем только + и цифры
   }
