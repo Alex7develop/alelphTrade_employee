@@ -151,13 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const contactButton = document.getElementById('Contact');
   contactButton.addEventListener('click', function () {
     const params = new URLSearchParams(window.location.search);
-
+  
     let name = params.get('name') || "Имя";
     let last_name = params.get('last_name') || "Фамилия";
     let phone = params.get('phone') || "+70000000000";
     let email = params.get('email') || "example@email.com";
     let photo = params.get('photo') || "";
-
+  
     // Формируем vCard
     const vCardData = `
     BEGIN:VCARD
@@ -169,15 +169,19 @@ document.addEventListener('DOMContentLoaded', function () {
     PHOTO;TYPE=JPEG:${photo}
     END:VCARD
     `.trim();
-
-    // Кодируем vCard для использования в data: URL, то что прислал Андрей 
-    const encodedVCard = encodeURIComponent(vCardData);
-
-    // Создаем ссылку с data: URL по примеру Андрея 
+  
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+  
     const downloadLink = document.createElement('a');
-    downloadLink.href = `data:text/vcard;charset=utf-8,${encodedVCard}`;
+    downloadLink.href = URL.createObjectURL(blob);
     downloadLink.download = `${name}_${last_name}.vcf`;
+  
+ 
+    document.body.appendChild(downloadLink);
     downloadLink.click();
+  
+
+    document.body.removeChild(downloadLink);
   });
 });
 
