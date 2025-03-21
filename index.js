@@ -151,38 +151,32 @@ document.addEventListener('DOMContentLoaded', function () {
   const contactButton = document.getElementById('Contact');
   contactButton.addEventListener('click', function () {
     const params = new URLSearchParams(window.location.search);
-  
+
     let name = params.get('name') || "Имя";
     let last_name = params.get('last_name') || "Фамилия";
     let phone = params.get('phone') || "+70000000000";
     let email = params.get('email') || "example@email.com";
-    let photo = params.get('photo') || "";
-  
-    // Формируем vCard
-    const vCardData = `
-    BEGIN:VCARD
-    VERSION:3.0
-    FN:${name} ${last_name}
-    N:${last_name};${name};;;
-    TEL;TYPE=CELL:${phone}
-    EMAIL;TYPE=INTERNET:${email}
-    PHOTO;TYPE=JPEG:${photo}
-    END:VCARD
-    `.trim();
-  
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-  
+
+    const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:${name} ${last_name}
+N:${last_name};${name};;;
+TEL;TYPE=CELL:${phone}
+EMAIL;TYPE=INTERNET:${email}
+END:VCARD`.trim();
+
+    const encodedData = encodeURIComponent(vCardData);
+    const dataUri = `data:text/vcard;charset=utf-8,${encodedData}`;
+
     const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.href = dataUri;
     downloadLink.download = `${name}_${last_name}.vcf`;
-  
- 
+
     document.body.appendChild(downloadLink);
     downloadLink.click();
-  
-
     document.body.removeChild(downloadLink);
-  });
+});
+
 });
 
 function showMap() {
